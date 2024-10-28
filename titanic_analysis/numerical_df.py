@@ -1,12 +1,23 @@
-def get_numerical_df(df, numerical_features):
+import pandas as pd
+
+def create_summary_table(df):
+
     """
-    Creates a DataFrame containing only numerical features.
+    Creates a summary DataFrame with feature name, data type, number of unique values, and if it has missing values.
     
     Args:
         df (pd.DataFrame): The Titanic dataset as a DataFrame.
-        numerical_features (list): List of numerical feature names.
     
     Returns:
-        pd.DataFrame: DataFrame containing only numerical features.
+        pd.DataFrame: A summary DataFrame.
     """
-    pass  # Implement the logic here
+     # Implement the logic here
+    
+    sum_dict ={"Feature Name":df.columns.to_list(),
+               "Data Type":df.dtypes.values,
+               "Has Missing Values?":df.isna().sum().values,
+               "Number of Unique Values":df.nunique().values
+               }
+    
+    sum_df = pd.DataFrame(sum_dict)
+    return sum_df
